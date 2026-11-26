@@ -15,6 +15,10 @@ ENTRY = (
 
 
 def main() -> None:
+    # Gate: the entry must be one line of 1-200 UTF-8 characters.
+    assert 1 <= len(ENTRY) <= 200, "entry must be 1-200 characters"
+    assert "\n" not in ENTRY and "\r" not in ENTRY, "entry must be a single line"
+    assert ENTRY.strip() == ENTRY, "entry must not start or end with whitespace"
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(ENTRY)
 
